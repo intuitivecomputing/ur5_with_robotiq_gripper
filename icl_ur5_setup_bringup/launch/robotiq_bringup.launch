@@ -1,0 +1,24 @@
+<launch>
+    <arg name="gripper_port" default="/dev/robotiq_gripper" />
+    <arg name="sensor_port" default="robotiq_fts" />
+    <arg name="gripper_name" default="icl_gripper/gripper_controller" />
+
+    <!--gripper bringup-->
+    <node name="gripper_node" pkg="robotiq_c_model_control" type="CModelRtuNode.py" args="$(arg gripper_port)" >
+        <remap from="CModelRobotInput" to="$(arg gripper_name)/input" />
+        <remap from="CModelRobotOutput" to="$(arg gripper_name)/output" />
+    </node>
+
+    <!--force torque sensor bringup-->
+    <node name="sensor_node" pkg="robotiq_force_torque_sensor" type="rq_sensor" >
+        <param name="serial_id" value="$(arg sensor_port)" />
+    </node>
+    <node name="avg_fil" pkg="icl_phri_robotiq_control" type="average_filter.py">
+        <remap from ="out" to="wrench_filtered" />
+        <param name="~window_size" value="120" />
+    </node>
+    
+    <include file="$(find robotiq_action_server)/launch/robotiq_c_model_action_server.launch">
+        <arg name="gripper_name" default="$(arg gripper_name)" />
+    </include>
+</launch>

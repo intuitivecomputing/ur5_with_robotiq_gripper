@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>icl_ur5_setup_description</name>
+  <version>0.0.1</version>
+  <description>UR5 arm with Robotiq ARG140 Gripper Description</description>
+  <maintainer email="ryan@rwsinnet.com.com">Ryan Sinnet</maintainer>
+  <author email="ryan@rwsinnet.com">Ryan Sinnet</author>
+  <maintainer email="ygao73@jhu.edu">Yuxiang Gao</maintainer>
+  <author email="ygao73@jhu.edu">Yuxiang Gao</author>
+  <license>BSD</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <exec_depend>urdf</exec_depend>
+
+  <export/>
+</package>

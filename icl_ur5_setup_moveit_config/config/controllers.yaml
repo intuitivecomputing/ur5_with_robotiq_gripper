@@ -1,0 +1,47 @@
+controller_list:
+# -------------for real UR5---------------------------------
+#  - name: vel_based_pos_traj_controller
+  - name: icl_ur5
+    action_ns: follow_joint_trajectory
+    type: FollowJointTrajectory
+    default: true
+    joints:
+      - shoulder_pan_joint
+      - shoulder_lift_joint
+      - elbow_joint
+      - wrist_1_joint
+      - wrist_2_joint
+      - wrist_3_joint
+
+  - name: icl_gripper
+    action_ns: gripper_cmd
+    type: GripperCommand
+    default: true
+    joints:
+      - finger_joint
+
+
+#initial:
+#  - group: manipulator
+#    pose:  up
+
+# -------------for gazebo UR5---------------------------------
+#  - name: "arm_controller"
+#    action_ns: follow_joint_trajectory
+#    type: FollowJointTrajectory
+#    default: true
+#    joints:
+#      - shoulder_pan_joint
+#      - shoulder_lift_joint
+#      - elbow_joint
+#      - wrist_1_joint
+#      - wrist_2_joint
+#      - wrist_3_joint
+
+# -------------for gazebo gripper---------------------------------
+#  - name: "gripper"
+#    action_ns: follow_joint_trajectory
+#    type: FollowJointTrajectory
+#    default: true
+#    joints:
+#      - finger_joint

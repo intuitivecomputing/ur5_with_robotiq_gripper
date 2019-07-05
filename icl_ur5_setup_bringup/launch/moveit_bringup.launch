@@ -1,0 +1,12 @@
+<launch>
+    <arg name="limited" value="true" />
+
+    <include file="$(find icl_ur5_setup_moveit_config)/launch/ur5_gripper_moveit_planning_execution.launch">
+      <arg name="limited" value="$(arg limited)" />
+    </include>
+
+    <include file="$(find icl_ur5_setup_moveit_config)/launch/moveit_rviz.launch" >
+      <arg name="config" value="true" />
+    </include>
+
+</launch>

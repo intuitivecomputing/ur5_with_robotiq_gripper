@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<!-- to control/activate the gripper on the local machine -->
+<!-- first do a 'reset' then 'activate' to activate the gripper-->
+<launch>
+
+   <arg name="gripper_name" default="icl_gripper/gripper_cmd" />
+
+  <node name="CModelSimpleController" pkg="robotiq_c_model_control" type="CModelSimpleController.py" output="screen">
+        <remap from="CModelRobotOutput" to="$(arg gripper_name)/output" />
+  </node>
+
+</launch>

@@ -1,0 +1,29 @@
+<launch>
+    <arg name="limited" value="true" />
+    <arg name="gripper_port" value="/dev/robotiq_gripper" />
+    <arg name="sensor_port" value="robotiq_fts" />
+    <!-- By default, we do not start a database (it can be large) -->
+    <arg name="db" default="true" />
+
+    <!--UR5 bringup-->
+    <include file="$(find icl_phri_ur5_gripper_bringup)/launch/ur5_bringup.launch">
+        <arg name="robot_ip" value="192.168.1.106" />
+        <arg name="limited" value="$(arg limited)" />
+        <arg name="with_gripper" value="true" />
+    </include>
+
+    <!--robotiq gripper and sensor bringup-->
+    <include ns="icl_phri_gripper" file="$(find icl_phri_ur5_gripper_bringup)/launch/robotiq_bringup.launch">
+        <arg name="gripper_port" value="($arg gripper_port)" />
+        <arg name="sensor_port" value="($arg sensor_port)" />
+    </include>
+
+    <!--moveit bringup-->
+    <include file="$(find icl_phri_ur5_gripper_bringup)/launch/moveit_bringup.launch">
+        <!--arg name="limited" value="$(arg limited)" /-->
+        <!--arg name="db" value="$(arg db)" /-->
+    </include>
+    
+    <node name="joint_state_republisher" pkg="icl_phri_ur5_gripper_bringup" type="gripper_joint_state_publisher.py"/>
+
+</launch>

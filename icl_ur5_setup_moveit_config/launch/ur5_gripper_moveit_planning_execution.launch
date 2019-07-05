@@ -1,0 +1,17 @@
+<launch>
+  <arg name="sim" default="false" />
+  <arg name="limited" default="false"/>
+  <arg name="debug" default="false" />
+
+  <!-- Remap follow_joint_trajectory -->
+  <remap if="$(arg sim)" from="/follow_joint_trajectory" to="/arm_controller/follow_joint_trajectory"/>
+  <!--remap unless="$(arg sim)" from="/follow_joint_trajectory" to="/manipulator_controller/follow_joint_trajectory"/-->
+  <!--remap from="joint_states" to="/manipulator/joint_states"/-->
+  <!-- Launch moveit -->
+  <include file="$(find icl_ur5_setup_moveit_config)/launch/move_group.launch">
+    <arg name="limited" default="$(arg limited)"/>
+    <arg name="debug" default="$(arg debug)" />
+	<arg name="sim" value="$(arg sim)" />
+  </include>
+</launch>
+
