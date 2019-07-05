@@ -34,6 +34,8 @@ Finally, run a Rviz to visualize the trajectory:
 
 __Usage with the hardware__
 
+This package communicates with Robotiq 140 gripper using the [robotiq_action_server](https://github.com/ros-industrial/robotiq/tree/kinetic-devel/robotiq_2f_gripper_action_server) through Modbus RTU protocol, so the first step to do is to connect 
+
 To bring up the whole arm configuration with all drivers, you can use the following command:
 
 ```roslaunch icl_ur5_setup_bringup ur5_gripper.launch```
