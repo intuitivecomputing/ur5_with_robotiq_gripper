@@ -4,9 +4,9 @@ Author: Yuxiang Gao and Yeping Wang
 ---
 __Dependence__
 
-[universal_robot](https://github.com/ros-industrial/universal_robot) : URDFs and Meshes for the UR5
+[universal_robot](https://github.com/ros-industrial/universal_robot) : URDFs and Meshes for UR5
 
-[ur_modern_driver](https://github.com/ros-industrial/ur_modern_driver) : Drivers for the UR5.
+[ur_modern_driver](https://github.com/ros-industrial/ur_modern_driver) : Drivers for UR5.
 
 [robotiq](https://github.com/ros-industrial/robotiq) : Drivers for the Robotiq gripper.
 
@@ -34,7 +34,7 @@ Finally, run a Rviz to visualize the trajectory:
 
 __Usage with the hardware__
 
-This package communicates with Robotiq 140 gripper using the [robotiq_action_server](https://github.com/ros-industrial/robotiq/tree/kinetic-devel/robotiq_2f_gripper_action_server) through Modbus RTU protocol, so the first step to do is to connect 
+This package communicates with Robotiq 140 gripper using the [robotiq_action_server](https://github.com/ros-industrial/robotiq/tree/kinetic-devel/robotiq_2f_gripper_action_server) through Modbus RTU protocol, so the first step to do is to connect the gripper using USB.
 
 To bring up the whole arm configuration with all drivers, you can use the following command:
 
@@ -44,7 +44,13 @@ If there are some connection error, you may need to change the `robot_ip` and `g
 
 UR’s teach-pendant -> Setup Robot -> Setup Network Menu -> ip address
 
-Then bring up the moveit:
+Activited the gripper:
+
+```roslaunch icl_ur5_setup_bringup activate_gripper.launch```
+
+Then press 'r' to reset and press 'a' to activite the gripper.
+
+Bring up the moveit:
 
 ```roslaunch icl_ur5_setup_moveit_config ur5_gripper_moveit_planning_execution.launch```
 
