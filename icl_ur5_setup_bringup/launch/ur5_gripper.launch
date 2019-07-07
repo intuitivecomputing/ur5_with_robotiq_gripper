@@ -2,6 +2,9 @@
     <arg name="limited" value="true" />
     <!-- By default, we do not start a database (it can be large) -->
     <arg name="db" default="true" />
+
+	<arg name="gripper_port" default="/dev/ttyUSB0" />
+    <arg name="gripper_name" default="icl_gripper/gripper_cmd" />
 	
     <!--UR5 bringup-->
     <include file="$(find icl_ur5_setup_bringup)/launch/ur5_bringup.launch">
@@ -10,21 +13,16 @@
         <arg name="with_gripper" value="true" />
     </include>
 	
-	<arg name="gripper_port" default="/dev/ttyUSB0" />
-	<!-- <arg name="gripper_port" default="/dev/robotiq_gripper" />  -->
-    <arg name="gripper_name" default="icl_gripper/gripper_cmd" />
-		
     <!--gripper bringup-->
-    <node name="gripper_node" pkg="robotiq_c_model_control" type="CModelRtuNode.py" args="$(arg gripper_port)" >
-        <remap from="CModelRobotInput" to="$(arg gripper_name)/input" />
-        <remap from="CModelRobotOutput" to="$(arg gripper_name)/output" />
+    <node name="gripper_node" pkg="robotiq_2f_gripper_control" type="Robotiq2FGripperRtuNode.py" args="$(arg gripper_port)" >
+        <remap from="Robotiq2FGripperRobotInput" to="$(arg gripper_name)/input" />
+        <remap from="Robotiq2FGripperRobotOutput" to="$(arg gripper_name)/output" />
     </node>
 
-	<include file="$(find robotiq_action_server)/launch/robotiq_c_model_action_server.launch">
+	<include file="$(find robotiq_2f_gripper_action_server)/launch/robotiq_2f_gripper_action_server.launch">
         <arg name="gripper_name" default="$(arg gripper_name)" />
     </include>
 
- 
     <node name="joint_state_republisher" pkg="icl_ur5_setup_bringup" type="gripper_joint_state_publisher.py">
 		<param name = "gripper_ns" value = "icl_gripper"/>
 	</node>

@@ -18,6 +18,8 @@ __Dependence__
 
 __Usage with Gazebo simulation__
 
+![](img/simulation.png)
+
 To start the Gazebo simulated ur5 and the gripper:
 
 ```roslaunch icl_ur5_setup_gazebo icl_ur5_gripper.launch```
