@@ -5,8 +5,8 @@
 
    <arg name="gripper_name" default="icl_gripper/gripper_cmd" />
 
-  <node name="CModelSimpleController" pkg="robotiq_c_model_control" type="CModelSimpleController.py" output="screen">
-        <remap from="CModelRobotOutput" to="$(arg gripper_name)/output" />
+  <node name="CModelSimpleController" pkg="robotiq_2f_gripper_control" type="Robotiq2FGripperSimpleController.py" output="screen">
+        <remap from="Robotiq2FGripperRobotOutput" to="$(arg gripper_name)/output" />
   </node>
 
 </launch>

@@ -3,7 +3,7 @@ import rospy
 from sensor_msgs.msg import JointState
 from copy import deepcopy
 import message_filters
-from robotiq_c_model_control.msg import _CModel_robot_input  as inputMsg
+from robotiq_2f_gripper_control.msg import _Robotiq2FGripper_robot_input  as inputMsg
 
 class FullState:
     def __init__(self):
@@ -12,7 +12,7 @@ class FullState:
         gripper_ns = rospy.get_param("~gripper_ns", "icl_gripper")
         fts_input = rospy.get_param("~fts_input", "gripper_cmd/input")
         joint_states_sub = message_filters.Subscriber(manipulator_ns + '/' + 'joint_states', JointState)
-        fts_sub = message_filters.Subscriber(gripper_ns + '/' + fts_input, inputMsg.CModel_robot_input)
+        fts_sub = message_filters.Subscriber(gripper_ns + '/' + fts_input, inputMsg.Robotiq2FGripper_robot_input)
         self._ts = message_filters.ApproximateTimeSynchronizer([joint_states_sub, fts_sub], 10, 0.1, allow_headerless=True)
         self._ts.registerCallback(self._joint_states_callback)
         self._joint_states_pub = rospy.Publisher('joint_states', JointState, queue_size=1)
