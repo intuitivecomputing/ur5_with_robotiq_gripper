@@ -2,6 +2,8 @@
 Author: Yuxiang Gao and Yeping Wang
 
 ---
+__ROS Version__ : Kinetic
+
 __Dependence__
 
 [universal_robot](https://github.com/ros-industrial/universal_robot) : URDFs and Meshes for UR5
@@ -63,4 +65,4 @@ Finally, run a Rviz to visualize the trajectory:
 
 __Reference__
 
-This repo learns a lot from [icl_phri_ur5](https://github.com/intuitivecomputing/icl_phri_ur5), [UR5-with-Robotiq-Gripper-and-Kinect](https://raw.githubusercontent.com/TAMS-Group/tams_ur5_setup/master/README.md) and [tams_ur5_setup](https://github.com/TAMS-Group/tams_ur5_setup)
+This repo learns a lot from [icl_phri_ur5](https://github.com/intuitivecomputing/icl_phri_ur5), [UR5-with-Robotiq-Gripper-and-Kinect](https://github.com/philwall3/UR5-with-Robotiq-Gripper-and-Kinect) and [tams_ur5_setup](https://github.com/TAMS-Group/tams_ur5_setup)
