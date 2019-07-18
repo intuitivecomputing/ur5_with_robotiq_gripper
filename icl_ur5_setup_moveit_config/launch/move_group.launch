@@ -4,6 +4,7 @@
   <arg name="sim" default="true" />
   <include file="$(find icl_ur5_setup_moveit_config)/launch/planning_context.launch" >
     <arg name="limited" value="$(arg limited)" />
+	<arg name="sim" value="$(arg sim)" />
   </include>
 
   <!-- GDB Debug Option -->
@@ -79,11 +80,7 @@
 				                      move_group/MoveGroupStateValidationService
 				                      move_group/MoveGroupGetPlanningSceneService
 				                      move_group/ClearOctomapService
-<<<<<<< HEAD
 				                      move_group/ExecuteTaskSolutionCapability
-=======
-									  move_group/ExecuteTaskSolutionCapability
->>>>>>> 4329434260e6c73bf4be9e4184e7bb8f4d32d2b8
 				                     " />
 
     <!-- Publish the planning scene of the physical robot so that rviz plugin can know actual robot -->

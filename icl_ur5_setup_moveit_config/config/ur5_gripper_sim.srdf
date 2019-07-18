@@ -9,7 +9,8 @@
     <!--JOINTS: When a joint is specified, the child link of that joint (which will always exist) is automatically included-->
     <!--CHAINS: When a chain is specified, all the links along the chain (including endpoints) are included in the group. Additionally, all the joints that are parents to included links are also included. This means that joints along the chain and the parent joint of the base link are included in the group-->
     <!--SUBGROUPS: Groups can also be formed by referencing to already defined group names-->
-    <group name="manipulator">
+	   
+	<group name="manipulator">
         <chain base_link="base_link" tip_link="fts_toolside" />
     </group>
     <group name="gripper">
@@ -24,7 +25,11 @@
         <joint name="right_finger_tip_joint" />
         <joint name="left_finger_tip_joint" />
         <joint name="ur5_ee_link-gripper_base" />
-    </group>
+    </group> 
+	<group name = "manipulator_gripper">
+		<group name = "manipulator"/>
+		<group name = "gripper" />
+	</group> 
     <!--GROUP STATES: Purpose: Define a named state for a particular group, in terms of joint values. This is useful to define states like 'folded arms'-->
     <group_state name="up" group="manipulator">
         <joint name="elbow_joint" value="0" />
@@ -38,7 +43,7 @@
         <joint name="finger_joint" value="0.04" />
     </group_state>
 	<group_state name="closed" group="gripper">
-        <joint name="finger_joint" value="0.5" />
+        <joint name="finger_joint" value="0.6" />
     </group_state>
     <!--END EFFECTOR: Purpose: Represent information about an end effector.-->
     <end_effector name="gripper" parent_link="fts_toolside" group="gripper" parent_group="manipulator" />

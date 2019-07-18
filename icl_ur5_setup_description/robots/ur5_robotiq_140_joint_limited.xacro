@@ -9,7 +9,7 @@
   <xacro:macro name="ur5_with_gripper_joint_limited" params="prefix">
     <!-- arm -->
     <xacro:ur5_robot prefix="${prefix}" joint_limited="true" 
-      shoulder_pan_lower_limit="${-3*pi/4}" shoulder_pan_upper_limit="${pi/2}"
+      shoulder_pan_lower_limit="${-pi}" shoulder_pan_upper_limit="${pi}"
       shoulder_lift_lower_limit="${-pi*7/8}" shoulder_lift_upper_limit="${-pi/8}"
       elbow_joint_lower_limit="${-pi}" elbow_joint_upper_limit="${pi}"
       wrist_1_lower_limit="${-pi}" wrist_1_upper_limit="${pi}"

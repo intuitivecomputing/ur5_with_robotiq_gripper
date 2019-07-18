@@ -2,6 +2,7 @@
   <!-- By default we do not overwrite the URDF. Change the following to true to change the default behavior -->
   <arg name="load_robot_description" default="false"/>
   <arg name="limited" default="false"/>
+  <arg name="sim" default = "true"/>
 
   <!-- The name of the parameter under which the URDF is loaded -->
   <arg name="robot_description" default="robot_description"/>
@@ -13,7 +14,15 @@
   </group>
  
   <!-- The semantic description that corresponds to the URDF -->
-  <param name="$(arg robot_description)_semantic" textfile="$(find icl_ur5_setup_moveit_config)/config/ur5_gripper.srdf" />
+
+  <group unless = "$(arg sim)"> 
+     <param name="$(arg robot_description)_semantic" textfile="$(find icl_ur5_setup_moveit_config)/config/ur5_gripper.srdf" />
+  </group>
+
+  <group if  = "$(arg sim)"> 
+    <param name="$(arg robot_description)_semantic" textfile="$(find icl_ur5_setup_moveit_config)/config/ur5_gripper_sim.srdf" />
+  </group>
+	
   
   <!-- Load updated joint limits (override information from URDF) -->
   <group ns="$(arg robot_description)_planning">
