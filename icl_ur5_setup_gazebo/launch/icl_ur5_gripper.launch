@@ -1,13 +1,14 @@
 <?xml version="1.0"?>
 <launch>
   <arg name="limited" default="true"/>
-  <arg name="paused" default="false"/>
+  <arg name="paused" default="true"/>
   <arg name="use_sim_time" default="true"/>
   <arg name="gui" default="true"/>
   <arg name="headless" default="false"/>
   <arg name="debug" default="false"/>
 
   <!-- We resume the logic in empty_world.launch, changing only the name of the world to be launched -->
+
   <include file="$(find gazebo_ros)/launch/empty_world.launch">
     <!--arg name="paused" value="false"/-->    
     <!-- more default parameters can be changed here -->
@@ -22,7 +23,10 @@
   <param name="robot_description" command="$(find xacro)/xacro.py '$(find icl_ur5_setup_description)/robots/ur5_robotiq_140_joint_limited.xacro' " />
 
   <!-- Spawn a robot into Gazebo -->
-  <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-param robot_description -urdf -model ur5_gripper -z 0.1" respawn="false" output="screen" />
+  <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-param robot_description -urdf -model ur5_gripper -z 0.1
+    -J ur5_gripper::shoulder_lift_joint -1.57
+    -J ur5_gripper::wrist_1_joint -1.57
+    -unpause  " respawn="false" output="screen" />
 
 
   <!--ros_control stuff for UR5 and robotiq-->
