@@ -4,6 +4,7 @@
   <arg name="sim" default="true" />
   <include file="$(find icl_ur5_setup_moveit_config)/launch/planning_context.launch" >
     <arg name="limited" value="$(arg limited)" />
+	<arg name="sim" value="$(arg sim)" />
   </include>
 
   <!-- GDB Debug Option -->

@@ -36,11 +36,11 @@
     </group_state>
 
 	<group_state name="open" group="gripper">
-        <joint name="finger_joint" value="0.06" />
+        <joint name="finger_joint" value="0.3" />
     </group_state>
 
 	<group_state name="closed" group="gripper">
-        <joint name="finger_joint" value="0.00" />
+        <joint name="finger_joint" value="0.83" />
     </group_state>
 
     <!--END EFFECTOR: Purpose: Represent information about an end effector.-->

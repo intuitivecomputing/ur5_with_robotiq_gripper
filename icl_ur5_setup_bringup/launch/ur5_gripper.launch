@@ -19,7 +19,7 @@
         <remap from="Robotiq2FGripperRobotOutput" to="$(arg gripper_name)/output" />
     </node>
 
-	<include file="$(find robotiq_2f_gripper_action_server)/launch/robotiq_2f_gripper_action_server.launch">
+	<include file="$(find icl_robotiq_2f_gripper_action_server)/launch/robotiq_2f_gripper_action_server.launch">
         <arg name="gripper_name" default="$(arg gripper_name)" />
     </include>
 
