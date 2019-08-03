@@ -2,9 +2,8 @@
 
 <launch>
   <arg name="gui" default="True" />
-  <param name="robot_description" command="$(find xacro)/xacro --inorder $(find icl_phri_ur5_robotiq_arg140_description)/urdf/ur5_robotiq_140_joint_limited.xacro" />
+  <param name="robot_description" command="$(find xacro)/xacro --inorder $(find icl_ur5_setup_description)/robots/ur5_robotiq_140_joint_limited.xacro" />
   <param name="use_gui" value="$(arg gui)"/>
   <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" />
   <node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher" />
-  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find icl_phri_ur5_robotiq_arg140_description)/visualize.rviz" required="true" />
 </launch>

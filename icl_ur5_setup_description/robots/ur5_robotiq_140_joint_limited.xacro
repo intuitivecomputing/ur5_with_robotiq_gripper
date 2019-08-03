@@ -16,12 +16,9 @@
       wrist_2_lower_limit="${-pi}" wrist_2_upper_limit="${pi}"
       wrist_3_lower_limit="${-pi}" wrist_3_upper_limit="${pi}"
     />
-    
-    <!-- gripper -->
-    <xacro:robotiq_arg2f_140 prefix="${prefix}" />
-    <!--dummy link-->
-  	<link name="world" />
-    <joint name="fixed_link-robot_base" type="fixed">
+
+    <link name="world" />
+    <joint name="fixed_link_robot_base" type="fixed">
       <parent link= "world" />
       <child link = "${prefix}base_link" />
       <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
@@ -32,7 +29,9 @@
       <origin xyz="0.009 0 0 " rpy="-${pi/2} 0 -${pi/2}"/>
     </xacro:robotiq_fts150>
 
-    <joint name="ur5_ee_link-gripper_base" type="fixed">
+   <!-- gripper -->
+    <xacro:robotiq_arg2f_140 prefix="${prefix}" />
+    <joint name="ur5_ee_link_gripper_base" type="fixed">
       <parent link= "${prefix}fts_toolside" />
       <child link = "${prefix}robotiq_arg2f_base_link" />
       <origin xyz=" 0.0 0.0 0.0" rpy="0.0 0.0 ${pi/2}" />
@@ -42,7 +41,7 @@
     <joint name="tool_tip" type="fixed">
       <parent link= "${prefix}ee_link" />
       <child link = "${prefix}tool" />
-      <origin xyz=" 0.00 0.0 0.1" rpy="0.0 0.0 0.0" />
+      <origin xyz=" 0.00 0.0 0.2" rpy="0.0 0.0 0.0" />
     </joint>
   </xacro:macro>
 

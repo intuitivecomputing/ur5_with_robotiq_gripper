@@ -3,7 +3,7 @@
  * for a Robotiq 2F gripper
  */
 
-#include "robotiq_2f_gripper_action_server/robotiq_2f_gripper_action_server.h"
+#include "icl_robotiq_2f_gripper_action_server/robotiq_2f_gripper_action_server.h"
 
 // To keep the fully qualified names managable
 
