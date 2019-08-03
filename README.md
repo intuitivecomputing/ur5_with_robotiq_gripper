@@ -12,8 +12,6 @@ __Dependence__
 
 [robotiq](https://github.com/ros-industrial/robotiq) : Drivers for the Robotiq gripper.
 
-[ros_canopen](https://github.com/ros-industrial/ros_canopen)
-
 [roboticsgroup_gazebo_plugins](https://github.com/roboticsgroup/roboticsgroup_gazebo_plugins) : For the gripper simulation in Gazebo
 
 ---
