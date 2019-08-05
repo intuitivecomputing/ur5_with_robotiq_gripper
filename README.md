@@ -14,6 +14,8 @@ __Dependence__
 
 [roboticsgroup_gazebo_plugins](https://github.com/roboticsgroup/roboticsgroup_gazebo_plugins) : For the gripper simulation in Gazebo
 
+[ros_controllers]: For the CripperActionController. Can be installed with `sudo apt-get install ros-kinetic-ros-controllers`
+
 ---
 
 __Usage with Gazebo simulation__
@@ -60,6 +62,15 @@ Finally, run a Rviz to visualize the trajectory:
 
 ```roslaunch icl_ur5_setup_moveit_config moveit_rviz.launch config:=true```
 
+---
+
+__To control the gripper__
+
+Publish the position value to `icl_gripper/gripper_cmd/goal`. 
+
+position value 0.0: open
+
+position valie 0.8: close
 
 __Reference__
 
