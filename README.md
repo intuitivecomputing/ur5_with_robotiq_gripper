@@ -66,11 +66,11 @@ Finally, run a Rviz to visualize the trajectory:
 
 __To control the gripper__
 
-Publish the position value to `icl_gripper/gripper_cmd/goal`. 
+Publish the position value to `icl_gripper/gripper_cmd/goal` (or the topic under a similar name). 
 
 position value 0.0: open
 
-position valie 0.8: close
+position value 0.8: close
 
 __Reference__
 
