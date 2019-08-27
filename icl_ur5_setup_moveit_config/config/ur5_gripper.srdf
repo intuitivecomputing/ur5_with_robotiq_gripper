@@ -42,7 +42,7 @@
     </group_state>
 
 	<group_state name="open" group="gripper">
-        <joint name="finger_joint" value="0.3" />
+        <joint name="finger_joint" value="0.45" />
     </group_state>
 
 	<group_state name="closed" group="gripper">

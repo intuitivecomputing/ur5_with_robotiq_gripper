@@ -40,7 +40,7 @@
         <joint name="wrist_3_joint" value="0" />
     </group_state>
 	<group_state name="open" group="gripper">
-        <joint name="finger_joint" value="0.04" />
+        <joint name="finger_joint" value="0.45" />
     </group_state>
 	<group_state name="closed" group="gripper">
         <joint name="finger_joint" value="0.6" />
