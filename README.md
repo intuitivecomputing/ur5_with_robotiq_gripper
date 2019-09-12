@@ -34,6 +34,11 @@ Finally, run a Rviz to visualize the trajectory:
 
 ```roslaunch icl_ur5_setup_moveit_config moveit_rviz.launch config:=true```
 
+To bringup the slide bar for each joint:
+```
+rosrun rqt_joint_trajectory_controller rqt_joint_trajectory_controller
+```
+
 ---
 
 __Usage with the hardware__
