@@ -47,11 +47,13 @@ This package communicates with Robotiq 140 gripper using the [robotiq_action_ser
 
 To bring up the whole arm configuration with all drivers, you can use the following command:
 
-```roslaunch icl_ur5_setup_bringup ur5_gripper.launch```
+```roslaunch icl_ur5_setup_bringup ur5_fts_gripper.launch```
 
-If there are some connection error, you may need to change the `robot_ip` and `gripper_port` in the launch file. To find the robot ip address:
+If there are some connection error, you may need to change the `gripper_port`, `serial_id`, and `robot_ip` in the launch file. Currently, `gripper_port` is `ttyUSB0` and `serial_id` is `ttyUSB1`, these require you to plug the gripper's USB first then plug the force torque sensor's USB. To find the robot ip address:
 
 UR’s teach-pendant -> Setup Robot -> Setup Network Menu -> ip address
+
+If you don't need the force torque sensor, you just need to launch `ur5_gripper.launch`
 
 Activited the gripper:
 
