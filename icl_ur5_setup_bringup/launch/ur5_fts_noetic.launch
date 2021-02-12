@@ -1,0 +1,22 @@
+<launch>
+    <arg name="limited" value="true" />
+    <!-- By default, we do not start a database (it can be large) -->
+    <arg name="db" default="true" />
+
+    <arg name="gripper_port" default="/dev/ttyUSB0" />
+    <arg name="gripper_name" default="icl_gripper/gripper_cmd" />
+	
+    <!--UR5 bringup-->
+    <include file="$(find icl_ur5_setup_bringup)/launch/ur5_bringup_noetic.launch">
+        <arg name="robot_ip" value="192.168.0.140" />
+        <arg name="limited" value="$(arg limited)" />
+        <arg name="with_gripper" value="true" />
+    </include> 
+
+    <!--force-torque sensor bringup-->
+    <node name="fts_node" pkg="robotiq_ft_sensor" type="rq_sensor" output="screen">
+        <param name="serial_id" type="string" value="ttyUSB0" />
+        <param name="frame_id" type="string" value="fts_toolside" />
+    </node>
+	
+</launch>
