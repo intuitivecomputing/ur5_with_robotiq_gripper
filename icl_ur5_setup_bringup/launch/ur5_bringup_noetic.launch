@@ -1,15 +1,19 @@
 <?xml version="1.0"?>
 <launch>
-  <arg name="debug" default="false" doc="Debug flag that will get passed on to ur_control.launch"/>
-  <arg name="use_tool_communication" doc="On e-Series robots tool communication can be enabled with this argument"/>
-  <arg name="controller_config_file" doc="Config file used for defining the ROS-Control controllers."/>
+  <arg name="with_gripper" default="false"/>
+  <arg name="debug" default="false" doc="Debug flag that will get passed on to ur_common.launch"/>
   <arg name="robot_ip" doc="IP address by which the robot can be reached."/>
   <arg name="reverse_port" default="50001" doc="Port that will be opened by the driver to allow direct communication between the driver and the robot controller."/>
   <arg name="script_sender_port" default="50002" doc="The driver will offer an interface to receive the program's URScript on this port. If the robot cannot connect to this port, `External Control` will stop immediately."/>
-  <arg name="kinematics_config" doc="Kinematics config file used for calibration correction. This will be used to verify the robot's calibration is matching the robot_description."/>
   <arg name="tf_prefix" default="" doc="tf_prefix used for the robot."/>
-  <arg name="controllers" default="joint_state_controller scaled_pos_joint_traj_controller speed_scaling_state_controller force_torque_sensor_controller robot_status_controller" doc="Controllers that are activated by default."/>
+  <arg name="controllers" default="joint_state_controller scaled_pos_joint_traj_controller speed_scaling_state_controller force_torque_sensor_controller" doc="Controllers that are activated by default."/>
   <arg name="stopped_controllers" default="pos_joint_traj_controller joint_group_vel_controller" doc="Controllers that are initally loaded, but not started."/>
+  <arg name="controller_config_file" default="$(find ur_robot_driver)/config/ur5_controllers.yaml" doc="Config file used for defining the ROS-Control controllers."/>
+  <arg name="robot_description_file" default="$(find ur_description)/launch/ur5_upload.launch" doc="Robot description launch file."/>
+  <arg name="kinematics_config" default="$(find ur_description)/config/ur5_default.yaml" doc="Kinematics config file used for calibration correction. This will be used to verify the robot's calibration is matching the robot_description."/>
+  <arg name="limited" default="false" doc="Use the description in limited mode (Every axis rotates from -PI to PI)"/>
+  <arg name="headless_mode" default="false" doc="Automatically send URScript to robot to execute. On e-Series this does require the robot to be in 'remote-control' mode. With this, the URCap is not needed on the robot."/>
+  <arg name="use_tool_communication" value="false"/>
   <arg name="tool_voltage" default="0" doc="Tool voltage set at the beginning of the UR program. Only used, when `use_tool_communication` is set to true."/>
   <arg name="tool_parity" default="0" doc="Parity configuration used for tool communication. Only used, when `use_tool_communication` is set to true."/>
   <arg name="tool_baud_rate" default="115200" doc="Baud rate used for tool communication. Only used, when `use_tool_communication` is set to true."/>
@@ -18,16 +22,12 @@
   <arg name="tool_tx_idle_chars" default="3.5" doc="Number of idle chars in TX channel used for tool communication. Only used, when `use_tool_communication` is set to true."/>
   <arg name="tool_device_name" default="/tmp/ttyUR" doc="Local device name used for tool communication. Only used, when `use_tool_communication` is set to true."/>
   <arg name="tool_tcp_port" default="54321" doc="Port on which the robot controller publishes the tool comm interface. Only used, when `use_tool_communication` is set to true."/>
-  <arg name="robot_description_file" doc="Robot description launch file."/>
-  <arg name="limited" default="false" doc="Use the description in limited mode (Every axis rotates from -PI to PI)"/>
-  <arg name="headless_mode" default="false" doc="Automatically send URScript to robot to execute. On e-Series this does require the robot to be in 'remote-control' mode. With this, the URCap is not needed on the robot."/>
-
  
 <!-- robot model -->
   <include unless="$(arg with_gripper)" file="$(find ur_description)/launch/ur5_upload.launch">
     <arg name="limited" value="$(arg limited)"/>
   </include>
-  <include if="$(arg with_gripper)" file="$(find icl_ur5_setup_description)/launch/ur5_gripper_upload.launch">
+  <include if="$(arg with_gripper)" file="$(find icl_ur5_setup_description)/launch/ur5_gripper_upload_noetic.launch">
     <arg name="limited" value="$(arg limited)"/>
   </include>
 

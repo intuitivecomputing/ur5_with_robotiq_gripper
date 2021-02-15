@@ -33,6 +33,4 @@
   </xacro:macro>
 
   <xacro:ur5_with_gripper prefix=""/>
-
-
 </robot>

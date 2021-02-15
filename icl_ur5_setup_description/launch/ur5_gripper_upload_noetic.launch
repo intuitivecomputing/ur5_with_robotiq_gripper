@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<launch>
+  <arg name="limited" default="true"/>
+  <arg name="transmission_hw_interface" default="hardware_interface/PositionJointInterface" />
+
+  <param unless="$(arg limited)" name="robot_description" command="$(find xacro)/xacro --inorder '$(find icl_ur5_setup_description)/robots/ur5_robotiq_140.xacro'" />
+  <param if="$(arg limited)" name="robot_description" command="$(find xacro)/xacro --inorder '$(find icl_ur5_setup_description)/robots/ur5_robotiq_140_joint_limited_noetic.xacro'" />
+</launch>
+

@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro" name="ur5_gripper">
+  <!-- include macros for UR5 and the Robotiq eef model -->
+  <xacro:include filename="$(find ur_description)/urdf/common.gazebo.xacro" />
+  <xacro:include filename="$(find ur_description)/urdf/ur5.urdf.xacro"/>
+  <xacro:include filename="$(find icl_ur5_setup_description)/urdf/robotiq_arg2f_140_model_macro.xacro" />
+  <xacro:include filename="$(find icl_ur5_setup_description)/urdf/robotiq_fts300_noetic.urdf.xacro" />
+  
+  <xacro:macro name="ur5_with_gripper_joint_limited" params="prefix">
+    <!-- arm -->
+    <xacro:arg name="kinematics_config" default="$(find ur_description)/config/ur5_default.yaml"/>
+    <xacro:ur5_robot prefix="${prefix}" joint_limited="true" 
+      shoulder_pan_lower_limit="${-3*pi/4}" shoulder_pan_upper_limit="${pi/2}"
+      shoulder_lift_lower_limit="${-pi*7/8}" shoulder_lift_upper_limit="${-pi/8}"
+      elbow_joint_lower_limit="${-pi}" elbow_joint_upper_limit="${pi}"
+      wrist_1_lower_limit="${-pi}" wrist_1_upper_limit="${pi}"
+      wrist_2_lower_limit="${-pi}" wrist_2_upper_limit="${pi}"
+      wrist_3_lower_limit="${-pi}" wrist_3_upper_limit="${pi}"
+      kinematics_file="${load_yaml('$(arg kinematics_config)')}"
+    />
+
+    <link name="world" />
+    <joint name="fixed_link_robot_base" type="fixed">
+      <parent link= "world" />
+      <child link = "${prefix}base_link" />
+      <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
+    </joint>
+
+    <!--force torque sensor-->
+    <xacro:robotiq_fts150 prefix="" parent="ee_link" >
+      <origin xyz="0.009 0 0 " rpy="-${pi/2} 0 -${pi/2}"/>
+    </xacro:robotiq_fts150>
+
+   <!-- gripper -->
+    <xacro:robotiq_arg2f_140 prefix="${prefix}" />
+    <joint name="ur5_ee_link_gripper_base" type="fixed">
+      <parent link= "${prefix}fts_toolside" />
+      <child link = "${prefix}robotiq_arg2f_base_link" />
+      <origin xyz=" 0.0 0.0 0.0" rpy="0.0 0.0 ${pi/2}" />
+    </joint>
+
+    <link name="${prefix}tool" />
+    <joint name="tool_tip" type="fixed">
+      <parent link= "${prefix}ee_link" />
+      <child link = "${prefix}tool" />
+      <origin xyz=" 0.00 0.0 0.2" rpy="0.0 0.0 0.0" />
+    </joint>
+  </xacro:macro>
+
+  <xacro:ur5_with_gripper_joint_limited prefix=""/>
+
+ <!-- Plugin -->
+</robot>

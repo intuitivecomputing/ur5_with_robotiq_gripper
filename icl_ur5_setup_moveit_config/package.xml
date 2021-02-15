@@ -26,8 +26,8 @@
   <run_depend>xacro</run_depend>
   <!-- This package is referenced in the warehouse launch files, but does not build out of the box at the moment. Commented the dependency until this works. -->
   <!-- <run_depend>warehouse_ros_mongo</run_depend> -->
-  <build_depend>icl_phri_ur5_robotiq_arg140_description</build_depend>
-  <run_depend>icl_phri_ur5_robotiq_arg140_description</run_depend>
+  <!-- <build_depend>icl_phri_ur5_robotiq_arg140_description</build_depend>
+  <run_depend>icl_phri_ur5_robotiq_arg140_description</run_depend> -->
 
 
 </package>
