@@ -13,10 +13,9 @@
         <arg name="with_gripper" value="true" />
     </include> 
 
-    <!--force-torque sensor bringup-->
+    <!--Force-torque sensor bringup-->
     <node name="fts_node" pkg="robotiq_ft_sensor" type="rq_sensor" output="screen">
         <param name="serial_id" type="string" value="ttyUSB0" />
         <param name="frame_id" type="string" value="fts_toolside" />
     </node>
-	
 </launch>

@@ -19,7 +19,7 @@
   </include>
 
   <!-- Convert an xacro and put on parameter server -->
-  <param name="robot_description" command="$(find xacro)/xacro '$(find icl_ur5_setup_description)/robots/ur5_robotiq_140_joint_limited.xacro' " />
+  <param name="robot_description" command="$(find xacro)/xacro '$(find icl_ur5_setup_description)/robots/ur5_robotiq_140_joint_limited_noetic.xacro' " />
 
   <!-- Spawn a robot into Gazebo -->
   <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-param robot_description -urdf -model ur5_gripper -z 0.1 
