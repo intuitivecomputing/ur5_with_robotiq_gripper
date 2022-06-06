@@ -1,0 +1,36 @@
+<launch>
+    <arg name="limited" value="true" />
+    <!-- By default, we do not start a database (it can be large) -->
+    <arg name="db" default="true" />
+
+    <arg name="gripper_port" default="/dev/ttyUSB0" />
+    <arg name="gripper_name" default="icl_gripper/gripper_cmd" />
+	
+    <!--UR5 bringup-->
+    <include file="$(find icl_ur5_setup_bringup)/launch/ur5_bringup_noetic.launch">
+        <arg name="robot_ip" value="192.168.0.140" />
+        <arg name="limited" value="$(arg limited)" />
+        <arg name="with_gripper" value="true" />
+    </include> 
+
+    <!--force-torque sensor bringup-->
+    <node name="fts_node" pkg="robotiq_ft_sensor" type="rq_sensor" output="screen">
+        <param name="serial_id" type="string" value="ttyUSB1" />
+        <param name="frame_id" type="string" value="fts_toolside" />
+    </node>
+	
+    <!--gripper bringup-->
+     <node name="gripper_node" pkg="robotiq_2f_gripper_control" type="Robotiq2FGripperRtuNode_noetic.py" args="$(arg gripper_port)" >
+        <remap from="Robotiq2FGripperRobotInput" to="$(arg gripper_name)/input" />
+        <remap from="Robotiq2FGripperRobotOutput" to="$(arg gripper_name)/output" />
+    </node>
+    
+	<include file="$(find icl_robotiq_2f_gripper_action_server)/launch/robotiq_2f_gripper_action_server.launch">
+        <arg name="gripper_name" default="$(arg gripper_name)" />
+    </include>
+	
+    <node name="joint_state_republisher" pkg="icl_ur5_setup_bringup" type="gripper_joint_state_publisher_noetic.py">
+        <param name = "gripper_ns" value = "icl_gripper"/>
+    </node>
+
+</launch>
